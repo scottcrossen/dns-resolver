@@ -5,12 +5,12 @@
 
 BYUNETID = slxn42
 VERSION = 1
-BINDIR = bin
+TMPDIR = tmp
 SOURCEDIR = source
 RELDIR = rel
 TESTDIR = test
 COMP = gcc
-BINOBJS = ${BINDIR}/resolver.o
+BINOBJS = ${TMPDIR}/resolver.o
 MAIN = ${RELDIR}/main
 TEST = ${TESTDIR}/resolver-ref
 COMPFLAGS = -g
@@ -28,7 +28,7 @@ all: $(MAIN)
 
 .PHONY: clean
 clean:
-	rm -rf $(BINDIR) $(RELDIR)
+	rm -rf $(TMPDIR) $(RELDIR)
 
 .PHONY: handin
 handin:
@@ -36,8 +36,8 @@ handin:
 
 # ==== Targets ====
 
-.PRECIOUS: ${BINDIR}/%.o
-${BINDIR}/%.o: ${SOURCEDIR}/%.c
+.PRECIOUS: ${TMPDIR}/%.o
+${TMPDIR}/%.o: ${SOURCEDIR}/%.c
 	mkdir -p $(@D)
 	$(COMP) -c $< -o $@ $(COMPFLAGS)
 
